@@ -99,34 +99,41 @@ const Game = () => {
         .length === 9 && !winner;
 
     return (
-        <div className="Game">
-            <div className="Game__board">
-                {Array.from({ length: 9}).map ((_, index) => {
-                    const key = getKeyFromIndex(index);
-                    return (
-                    <button 
-                        key={index} 
-                        type="button" 
-                        onClick={() => handleClick(key)
-                        }
-                    >
-                        {getLabel(values[key])}
-                    </button>
-                    )
-                })}   
+        <div className="Body-game">
+            <h1>JOGO DA VELHA</h1>
+            <div className="Game">
+                <div className="Game__board">
+                    {Array.from({ length: 9}).map ((_, index) => {
+                        const key = getKeyFromIndex(index);
+                        return (
+                        <button 
+                            key={index} 
+                            type="button" 
+                            onClick={() => handleClick(key)
+                            }
+                        >
+                            {getLabel(values[key])}
+                        </button>
+                        )
+                    })}   
+                </div> 
             </div>
-            {(winner || itsAtie) && (
-                <div className="Game__menu">
-                    {winner ? (
-                        <p> O ganhador é: {winner > 0 ? 'O' : 'X'}</p>
-                    ): (
-                        <p>Houve um empate</p>
+
+            <div>
+                {(winner || itsAtie) && (
+                        <div className="Game__menu">
+                            {winner ? (
+                                <p> {winner > 0 ? 'O' : 'X'}  <br></br> <font size="6">WINNER</font>  </p>  
+                                
+                            ): (
+                                <h1>Houve um empate</h1>
+                            )}
+                        </div>
                     )}
-                    
-                    <button onClick={reset}>Reiniciar Game</button>
-                </div>
-            )}
-            
+            </div>
+            <div className="Button-reset">
+                <button onClick={reset}>Reiniciar Game</button>
+            </div>
         </div>
     );
 }
